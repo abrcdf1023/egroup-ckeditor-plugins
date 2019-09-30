@@ -1,0 +1,9 @@
+{
+  "name": "@egroup/ckeditor-insert-image",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@ckeditor/ckeditor5-image": "^14.0.0"
+  }
+}
