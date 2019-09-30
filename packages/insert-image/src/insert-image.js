@@ -7,39 +7,42 @@ import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 
 class InsertImage extends Plugin {
-    static get requires() {
-        return [ Image ];
-    }
-    
-    init() {
-        const editor = this.editor;
+  static get requires() {
+    return [Image];
+  }
 
-        editor.ui.componentFactory.add( 'insertImage', locale => {
-            const view = new ButtonView( locale );
+  init() {
+    const editor = this.editor;
 
-            view.set( {
-                label: 'Insert image',
-                icon: imageIcon,
-                tooltip: true
-            } );
+    editor.ui.componentFactory.add('insertImage', locale => {
+      const view = new ButtonView(locale);
 
-            // Callback executed once the image is clicked.
-            view.on( 'execute', () => {
-                const imageUrl = prompt( 'Image URL' );
+      view.set({
+        label: 'Insert image',
+        icon: imageIcon,
+        tooltip: true
+      });
 
-                editor.model.change( writer => {
-                    const imageElement = writer.createElement( 'image', {
-                        src: imageUrl
-                    } );
+      // Callback executed once the image is clicked.
+      view.on('execute', () => {
+        const imageUrl = prompt('Image URL');
 
-                    // Insert the image in the current selection location.
-                    editor.model.insertContent( imageElement, editor.model.document.selection );
-                } );
-            } );
+        editor.model.change(writer => {
+          const imageElement = writer.createElement('image', {
+            src: imageUrl
+          });
 
-            return view;
-        } );
-    }
+          // Insert the image in the current selection location.
+          editor.model.insertContent(
+            imageElement,
+            editor.model.document.selection
+          );
+        });
+      });
+
+      return view;
+    });
+  }
 }
 
-export default InsertImage
+export default InsertImage;
