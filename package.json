@@ -24,8 +24,22 @@
   "devDependencies": {
     "@ckeditor/ckeditor5-inspector": "^1.4.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.7",
+    "lint-staged": "^9.4.0",
+    "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "webpack-dev-server": "^3.8.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "workspaces": [
     "packages/*"
