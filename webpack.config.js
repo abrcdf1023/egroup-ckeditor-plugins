@@ -64,5 +64,11 @@ module.exports = {
   // By default webpack logs warnings if the bundle is bigger than 200kb.
   performance: {
     hints: false
+  },
+
+  resolve: {
+    alias: {
+      '@egroup/ckeditor-insert-image': path.resolve(__dirname, './packages/insert-image/src/'),
+    }
   }
 };
