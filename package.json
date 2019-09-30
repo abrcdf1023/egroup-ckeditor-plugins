@@ -1,0 +1,13 @@
+{
+  "name": "customiz-plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "postcss-loader": "3",
+    "raw-loader": "3",
+    "style-loader": "1",
+    "webpack": "4",
+    "webpack-cli": "3"
+  }
+}
