@@ -10,22 +10,31 @@ import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 
 import SimpleBox from '@egroup/ckeditor-simplebox'; // ADDED
 
+import CKEditorInspector from '@ckeditor/ckeditor5-inspector'; 
+
 ClassicEditor
   .create(document.querySelector('#editor'), {
     plugins: [
       Essentials, Paragraph, Heading, List, Bold, Italic,
       SimpleBox // ADDED
     ],
-    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList']
+    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'simpleBox']
+  })
+  .then( editor => {
+    console.log( 'Editor was initialized', editor );
+
+    CKEditorInspector.attach( 'editor', editor );
+
+    window.editor = editor;
   })
   // For develop usage.
-  .then(async editor => {
-    if (!process.env.production) {
-      const CKEditorInspector = await import('@ckeditor/ckeditor5-inspector').then(el => el.default)
-      CKEditorInspector.attach(editor);
-    }
-    console.log('Editor was initialized', editor);
-  })
+  // .then(async editor => {
+  //   if (!process.env.production) {
+  //     const CKEditorInspector = await import('@ckeditor/ckeditor5-inspector').then(el => el.default)
+  //     CKEditorInspector.attach(editor);
+  //   }
+  //   console.log('Editor was initialized', editor);
+  // })
   .catch(error => {
     console.error(error.stack);
   });
