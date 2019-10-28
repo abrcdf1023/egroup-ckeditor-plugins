@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^12.3.0",
-    "@ckeditor/ckeditor5-ui": "^14.0.0"
+    "@ckeditor/ckeditor5-ui": "^14.0.0",
+    "@ckeditor/ckeditor5-widget": "^15.0.0"
   }
 }
