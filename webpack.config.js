@@ -69,6 +69,7 @@ module.exports = {
   resolve: {
     alias: {
       '@egroup/ckeditor-insert-image': path.resolve(__dirname, './packages/insert-image/src/'),
+      '@egroup/ckeditor-insert-drawio': path.resolve(__dirname, './packages/insert-drawio/src/'),
     }
   }
 };
