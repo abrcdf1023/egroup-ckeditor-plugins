@@ -27,16 +27,12 @@ module.exports = {
 
   module: {
     rules: [{
-        // Or /ckeditor5-[^/]+\/theme\/icons\/.+\.svg$/ if you want to limit this loader
-        // to CKEditor 5 icons only.
-        test: /\.svg$/,
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
 
         use: ['raw-loader']
       },
       {
-        // Or /ckeditor5-[^/]+\/theme\/.+\.css$/ if you want to limit this loader
-        // to CKEditor 5 theme only.
-        test: /\.css$/,
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
 
         use: [{
             loader: 'style-loader',
@@ -70,6 +66,7 @@ module.exports = {
     alias: {
       '@egroup/ckeditor-insert-image': path.resolve(__dirname, './packages/insert-image/src/'),
       '@egroup/ckeditor-insert-drawio': path.resolve(__dirname, './packages/insert-drawio/src/'),
+      '@egroup/ckeditor-simplebox': path.resolve(__dirname, './packages/simplebox/src/'),
     }
   }
 };
