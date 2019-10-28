@@ -4,15 +4,9 @@ import {
   toWidget,
   toWidgetEditable
 } from '@ckeditor/ckeditor5-widget/src/utils';
-import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 
 import InsertDrawioViewerCommand from './insertdrawioviewercommand';
 export default class DrawioViewerEditing extends Plugin {
-  static get requires() {
-    // ADDED
-    return [Widget];
-  }
-
   init() {
     console.log('DrawioViewerEditing#init() got called');
 
