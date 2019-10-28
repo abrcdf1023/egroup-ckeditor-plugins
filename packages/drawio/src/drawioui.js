@@ -1,18 +1,18 @@
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-export default class DrawioViewerUI extends Plugin {
+export default class DrawioUI extends Plugin {
   init() {
-    console.log('DrawioViewerUI#init() got called');
+    console.log('DrawioUI#init() got called');
 
     const editor = this.editor;
     const t = editor.t;
 
-    // The "DrawioViewer" button must be registered among the UI components of the editor
+    // The "Drawio" button must be registered among the UI components of the editor
     // to be displayed in the toolbar.
-    editor.ui.componentFactory.add('DrawioViewer', locale => {
+    editor.ui.componentFactory.add('Drawio', locale => {
       // The state of the button will be bound to the widget command.
-      const command = editor.commands.get('insertDrawioViewer');
+      const command = editor.commands.get('insertDrawio');
 
       // The button will be an instance of ButtonView.
       const buttonView = new ButtonView(locale);
@@ -20,7 +20,7 @@ export default class DrawioViewerUI extends Plugin {
       buttonView.set({
         // The t() function helps localize the editor. All strings enclosed in t() can be
         // translated and change when the language of the editor changes.
-        label: t('Drawio Viewer'),
+        label: t('Drawio'),
         withText: true,
         tooltip: true
       });
@@ -30,7 +30,7 @@ export default class DrawioViewerUI extends Plugin {
 
       // Execute the command when the button is clicked (executed).
       this.listenTo(buttonView, 'execute', () =>
-        editor.execute('insertDrawioViewer')
+        editor.execute('insertDrawio')
       );
 
       return buttonView;

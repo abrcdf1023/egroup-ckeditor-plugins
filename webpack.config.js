@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 const {
@@ -65,7 +65,7 @@ module.exports = {
   resolve: {
     alias: {
       '@egroup/ckeditor-insert-image': path.resolve(__dirname, './packages/insert-image/src/'),
-      '@egroup/ckeditor-drawioviewer': path.resolve(__dirname, './packages/drawioviewer/src/'),
+      '@egroup/ckeditor-drawio': path.resolve(__dirname, './packages/drawio/src/'),
       '@egroup/ckeditor-simplebox': path.resolve(__dirname, './packages/simplebox/src/'),
     }
   }

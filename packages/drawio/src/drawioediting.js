@@ -1,27 +1,24 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import {
-  toWidget,
-  toWidgetEditable
-} from '@ckeditor/ckeditor5-widget/src/utils';
+import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
-import InsertDrawioViewerCommand from './insertdrawioviewercommand';
-export default class DrawioViewerEditing extends Plugin {
+import InsertDrawioCommand from './insertdrawiocommand';
+export default class DrawioEditing extends Plugin {
   init() {
-    console.log('DrawioViewerEditing#init() got called');
+    console.log('DrawioEditing#init() got called');
 
     this._defineSchema();
     this._defineConverters();
 
     this.editor.commands.add(
-      'insertDrawioViewer',
-      new InsertDrawioViewerCommand(this.editor)
+      'insertDrawio',
+      new InsertDrawioCommand(this.editor)
     );
   }
 
   _defineSchema() {
     const schema = this.editor.model.schema;
-    schema.register('drawioViewer', {
+    schema.register('drawio', {
       // Behaves like a self-contained object (e.g. an image).
       isObject: true,
       isBlock: true,
@@ -34,27 +31,27 @@ export default class DrawioViewerEditing extends Plugin {
     const conversion = this.editor.conversion;
 
     conversion.for('dataDowncast').elementToElement({
-      model: 'drawioViewer',
+      model: 'drawio',
       view: (modelElement, viewWriter) =>
         viewWriter.createContainerElement('iframe', {
-          class: 'drawio-viewer',
+          class: 'drawio',
           width: '100%',
           height: '500px'
         })
     });
 
     conversion.for('editingDowncast').elementToElement({
-      model: 'drawioViewer',
+      model: 'drawio',
       view: (modelElement, viewWriter) => {
         const iframe = viewWriter.createContainerElement('iframe', {
-          class: 'drawio-viewer',
+          class: 'drawio',
           width: '100%',
           height: '500px',
           src: modelElement.getAttribute('src')
         });
 
         return toWidget(iframe, viewWriter, {
-          label: 'drawio viewer widget'
+          label: 'drawio widget'
         });
       }
     });
@@ -62,13 +59,13 @@ export default class DrawioViewerEditing extends Plugin {
     conversion.for('upcast').elementToElement({
       view: {
         name: 'iframe',
-        classes: 'drawio-viewer',
+        classes: 'drawio',
         attributes: {
           src: true
         }
       },
       model: (viewImage, modelWriter) =>
-        modelWriter.createElement('drawioViewer', {
+        modelWriter.createElement('drawio', {
           src: viewImage.getAttribute('src')
         })
     });

@@ -6,7 +6,7 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 
-import DrawioViewer from '@egroup/ckeditor-drawioviewer';
+import Drawio from '@egroup/ckeditor-drawio';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
@@ -14,9 +14,9 @@ ClassicEditor
   .create(document.querySelector('#editor'), {
     plugins: [
       Essentials, Paragraph, Heading, List, Bold, Italic,
-      DrawioViewer
+      Drawio
     ],
-    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawioViewer']
+    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio']
   })
   .then(editor => {
     CKEditorInspector.attach('editor', editor);
