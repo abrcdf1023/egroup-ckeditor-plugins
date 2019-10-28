@@ -10,6 +10,7 @@ ClassicEditor
     plugins: [ Essentials, Paragraph, Bold, Italic, InsertImage ],
     toolbar: ['bold', 'italic', 'insertImage']
   })
+  // For develop usage.
   .then(async editor => {
     if (!process.env.production) {
       const CKEditorInspector = await import('@ckeditor/ckeditor5-inspector').then(el => el.default)
