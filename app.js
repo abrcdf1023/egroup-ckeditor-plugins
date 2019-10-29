@@ -6,9 +6,9 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 
-import Drawio from '@egroup/ckeditor-drawio';
-import DrawioToobar from '@egroup/ckeditor-drawiotoolbar';
-import DrawioEdit from '@egroup/ckeditor-drawioedit';
+import Drawio from '@e-group/ckeditor-drawio';
+import DrawioToobar from '@e-group/ckeditor-drawiotoolbar';
+import DrawioEdit from '@e-group/ckeditor-drawioedit';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
