@@ -29,7 +29,12 @@ ClassicEditor
       autoEmbedMatcher: (url) => {
         console.log(url)
         return true
-      }
+      },
+      asyncInsertDrawio: () => new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/flow/html/0872d2689b644670875af0d6c29e91c3.html')
+        }, 2000)
+      })
     }
   })
   .then(editor => {

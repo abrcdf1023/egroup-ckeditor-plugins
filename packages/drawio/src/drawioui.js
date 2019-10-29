@@ -10,7 +10,7 @@ export default class DrawioUI extends Plugin {
     // to be displayed in the toolbar.
     editor.ui.componentFactory.add('Drawio', locale => {
       // The state of the button will be bound to the widget command.
-      const command = editor.commands.get('insertDrawio');
+      const command = editor.commands.get('asyncInsertDrawio');
 
       // The button will be an instance of ButtonView.
       const buttonView = new ButtonView(locale);
@@ -28,7 +28,7 @@ export default class DrawioUI extends Plugin {
 
       // Execute the command when the button is clicked (executed).
       this.listenTo(buttonView, 'execute', () =>
-        editor.execute('insertDrawio')
+        editor.execute('asyncInsertDrawio')
       );
 
       return buttonView;

@@ -2,15 +2,15 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
-import InsertDrawioCommand from './insertdrawiocommand';
+import AsyncInsertDrawioCommand from './asyncinsertdrawiocommand';
 export default class DrawioEditing extends Plugin {
   init() {
     this._defineSchema();
     this._defineConverters();
 
     this.editor.commands.add(
-      'insertDrawio',
-      new InsertDrawioCommand(this.editor)
+      'asyncInsertDrawio',
+      new AsyncInsertDrawioCommand(this.editor)
     );
   }
 
