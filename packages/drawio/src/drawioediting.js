@@ -40,6 +40,7 @@ export default class DrawioEditing extends Plugin {
         });
         // TODO: Use customized view button to replace drawio default iframe buttons.
         const iframe = viewWriter.createEmptyElement('iframe', {
+          class: 'drawio',
           style: 'position: absolute; height: 100%; top: 0; left: 0;',
           src: modelElement.getAttribute('src')
         });
