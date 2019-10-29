@@ -1,6 +1,6 @@
 {
   "name": "@e-group/ckeditor-drawio",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "dependencies": {
     "@ckeditor/ckeditor5-clipboard": "^15.0.0",
