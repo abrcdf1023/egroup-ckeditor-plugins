@@ -5,20 +5,21 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Link from '@ckeditor/ckeditor5-link/src/link';
 
-import Drawio from '@e-group/ckeditor-drawio';
-import DrawioToobar from '@e-group/ckeditor-drawiotoolbar';
-import DrawioEdit from '@e-group/ckeditor-drawioedit';
+import Drawio from '@e-group/ckeditor-drawio/src/drawio';
+import DrawioToobar from '@e-group/ckeditor-drawio/src/drawiotoolbar';
+import DrawioEdit from '@e-group/ckeditor-drawio/src/drawioedit';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
 ClassicEditor
   .create(document.querySelector('#editor'), {
     plugins: [
-      Essentials, Paragraph, Heading, List, Bold, Italic,
+      Essentials, Paragraph, Heading, List, Bold, Italic, Link,
       Drawio, DrawioToobar, DrawioEdit
     ],
-    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio'],
+    toolbar: ['link', 'heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio'],
     drawio: {
       toolbar: ['drawioEdit'],
       drawioEdit: {
@@ -27,8 +28,7 @@ ClassicEditor
         }
       },
       autoEmbedMatcher: (url) => {
-        console.log(url)
-        return true
+        return url.indexOf('edstest-bucket') !== -1
       },
       asyncInsertDrawio: () => new Promise((resolve) => {
         setTimeout(() => {

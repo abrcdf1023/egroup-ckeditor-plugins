@@ -17,6 +17,7 @@
     "@ckeditor/ckeditor5-editor-classic": "^15.0.0",
     "@ckeditor/ckeditor5-essentials": "^15.0.0",
     "@ckeditor/ckeditor5-heading": "^15.0.0",
+    "@ckeditor/ckeditor5-link": "^15.0.0",
     "@ckeditor/ckeditor5-list": "^15.0.0",
     "@ckeditor/ckeditor5-paragraph": "^15.0.0",
     "@ckeditor/ckeditor5-theme-lark": "^15.0.0",

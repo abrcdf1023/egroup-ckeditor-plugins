@@ -1,5 +1,5 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import DrawioEditUI from './drawioeditui';
+import DrawioEditUI from './drawioedit/drawioeditui';
 
 export default class DrawioEdit extends Plugin {
   static get requires() {
