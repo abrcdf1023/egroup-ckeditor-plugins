@@ -1,6 +1,6 @@
 {
   "name": "@e-group/ckeditor-drawioedit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^15.0.0",
