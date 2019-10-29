@@ -7,6 +7,8 @@ import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 
 import Drawio from '@egroup/ckeditor-drawio';
+import DrawioToobar from '@egroup/ckeditor-drawiotoolbar';
+import DrawioEdit from '@egroup/ckeditor-drawioedit';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
@@ -14,9 +16,21 @@ ClassicEditor
   .create(document.querySelector('#editor'), {
     plugins: [
       Essentials, Paragraph, Heading, List, Bold, Italic,
-      Drawio
+      Drawio, DrawioToobar, DrawioEdit
     ],
-    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio']
+    toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio'],
+    drawio: {
+      toolbar: ['drawioEdit'],
+      drawioEdit: {
+        onClick: () => {
+          console.log('clicked')
+        }
+      },
+      autoEmbedMatcher: (url) => {
+        console.log(url)
+        return true
+      }
+    }
   })
   .then(editor => {
     CKEditorInspector.attach('editor', editor);

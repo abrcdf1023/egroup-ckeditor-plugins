@@ -3,8 +3,6 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 export default class DrawioUI extends Plugin {
   init() {
-    console.log('DrawioUI#init() got called');
-
     const editor = this.editor;
     const t = editor.t;
 

@@ -5,8 +5,6 @@ import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 import InsertDrawioCommand from './insertdrawiocommand';
 export default class DrawioEditing extends Plugin {
   init() {
-    console.log('DrawioEditing#init() got called');
-
     this._defineSchema();
     this._defineConverters();
 
@@ -30,27 +28,29 @@ export default class DrawioEditing extends Plugin {
   _defineConverters() {
     const conversion = this.editor.conversion;
 
-    conversion.for('dataDowncast').elementToElement({
-      model: 'drawio',
-      view: (modelElement, viewWriter) =>
-        viewWriter.createContainerElement('iframe', {
-          class: 'drawio',
-          width: '100%',
-          height: '500px'
-        })
-    });
-
-    conversion.for('editingDowncast').elementToElement({
+    conversion.for('downcast').elementToElement({
       model: 'drawio',
       view: (modelElement, viewWriter) => {
-        const iframe = viewWriter.createContainerElement('iframe', {
-          class: 'drawio',
-          width: '100%',
-          height: '500px',
+        const root = viewWriter.createContainerElement('figure', {
+          class: 'drawio-wrapper',
+          style: 'margin: 1em 0;'
+        });
+        const container = viewWriter.createContainerElement('div', {
+          style: 'position: relative; height: 0; padding-bottom: 500px;'
+        });
+        // TODO: Use customized view button to replace drawio default iframe buttons.
+        const iframe = viewWriter.createEmptyElement('iframe', {
+          style: 'position: absolute; height: 100%; top: 0; left: 0;',
           src: modelElement.getAttribute('src')
         });
 
-        return toWidget(iframe, viewWriter, {
+        viewWriter.setCustomProperty('drawio', true, root);
+
+        viewWriter.insert(viewWriter.createPositionAt(container, 0), iframe);
+
+        viewWriter.insert(viewWriter.createPositionAt(root, 0), container);
+
+        return toWidget(root, viewWriter, {
           label: 'drawio widget'
         });
       }
