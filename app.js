@@ -20,7 +20,12 @@ ClassicEditor
     ],
     toolbar: ['heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'drawio'],
     drawio: {
-      toolbar: ['drawioEdit']
+      toolbar: ['drawioEdit'],
+      drawioEdit: {
+        onClick: () => {
+          console.log('clicked')
+        }
+      }
     }
   })
   .then(editor => {

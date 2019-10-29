@@ -17,8 +17,6 @@ export default class DrawioEditUI extends Plugin {
 
   destroy() {
     super.destroy();
-
-    this._form.destroy();
   }
 
   _createButton() {
@@ -27,6 +25,7 @@ export default class DrawioEditUI extends Plugin {
 
     editor.ui.componentFactory.add('drawioedit', locale => {
       const view = new ButtonView(locale);
+      const { onClick } = editor.config.get('drawio.drawioEdit') || {};
 
       view.set({
         label: t('Open Drawio Editor'),
@@ -34,9 +33,9 @@ export default class DrawioEditUI extends Plugin {
         tooltip: true
       });
 
-      this.listenTo(view, 'execute', () => {
-        console.log('clicked');
-      });
+      if (onClick) {
+        this.listenTo(view, 'execute', onClick);
+      }
 
       return view;
     });
