@@ -3,23 +3,14 @@ import WidgetToolbarRepository from '@ckeditor/ckeditor5-widget/src/widgettoolba
 import { isWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
 export default class DrawioToolbar extends Plugin {
-  /**
-   * @inheritDoc
-   */
   static get requires() {
     return [WidgetToolbarRepository];
   }
 
-  /**
-   * @inheritDoc
-   */
   static get pluginName() {
     return 'DrawioToolbar';
   }
 
-  /**
-   * @inheritDoc
-   */
   afterInit() {
     const editor = this.editor;
     const t = editor.t;

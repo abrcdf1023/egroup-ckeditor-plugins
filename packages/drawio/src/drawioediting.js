@@ -50,6 +50,8 @@ export default class DrawioEditing extends Plugin {
           src: modelElement.getAttribute('src')
         });
 
+        viewWriter.setCustomProperty('drawio', true, iframe);
+
         return toWidget(iframe, viewWriter, {
           label: 'drawio widget'
         });
