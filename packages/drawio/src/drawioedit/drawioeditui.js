@@ -25,7 +25,7 @@ export default class DrawioEditUI extends Plugin {
 
     editor.ui.componentFactory.add('drawioedit', locale => {
       const view = new ButtonView(locale);
-      const { onClick } = editor.config.get('drawio.drawioEdit') || {};
+      const { onOpenClick } = editor.config.get('drawioEdit') || {};
 
       view.set({
         label: t('Open Drawio Editor'),
@@ -33,8 +33,8 @@ export default class DrawioEditUI extends Plugin {
         tooltip: true
       });
 
-      if (onClick) {
-        this.listenTo(view, 'execute', onClick);
+      if (onOpenClick) {
+        this.listenTo(view, 'execute', onOpenClick);
       }
 
       return view;

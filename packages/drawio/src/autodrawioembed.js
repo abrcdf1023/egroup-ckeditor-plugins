@@ -96,7 +96,7 @@ export default class AutoDrawioEmbed extends Plugin {
     const walker = urlRange.getWalker({
       ignoreElementEnd: true
     });
-    const { autoEmbedMatcher } = editor.config.get('drawio');
+    const { autoEmbedMatcher } = editor.config.get('drawio') || {};
 
     let url = '';
 
