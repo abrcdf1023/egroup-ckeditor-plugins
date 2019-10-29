@@ -1,4 +1,5 @@
 import Command from '@ckeditor/ckeditor5-core/src/command';
+import { createDrawio } from './utils';
 
 export default class InsertDrawioCommand extends Command {
   execute() {
@@ -20,12 +21,4 @@ export default class InsertDrawioCommand extends Command {
 
     this.isEnabled = allowedIn !== null;
   }
-}
-
-function createDrawio(writer, drawioUrl) {
-  const drawio = writer.createElement('drawio', {
-    src: drawioUrl
-  });
-
-  return drawio;
 }

@@ -25,6 +25,10 @@ ClassicEditor
         onClick: () => {
           console.log('clicked')
         }
+      },
+      autoEmbedMatcher: (url) => {
+        console.log(url)
+        return true
       }
     }
   })
