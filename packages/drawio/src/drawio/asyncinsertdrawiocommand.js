@@ -1,5 +1,5 @@
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import { createDrawio } from './utils';
+import { createDrawio } from '../utils';
 
 export default class AsyncInsertDrawioCommand extends Command {
   execute() {

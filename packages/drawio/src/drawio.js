@@ -1,8 +1,9 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import Widget from '@ckeditor/ckeditor5-widget/src/widget';
-import DrawioEditing from './drawioediting';
-import DrawioUI from './drawioui';
-import AutoDrawioEmbed from './autodrawioembed';
+import DrawioEditing from './drawio/drawioediting';
+import DrawioUI from './drawio/drawioui';
+import AutoDrawioEmbed from './drawio/autodrawioembed';
+import InsertDrawioCommand from './drawio/insertdrawiocommand';
 
 export default class Drawio extends Plugin {
   /**
@@ -14,5 +15,12 @@ export default class Drawio extends Plugin {
 
   static get requires() {
     return [Widget, DrawioEditing, DrawioUI, AutoDrawioEmbed];
+  }
+
+  init() {
+    this.editor.commands.add(
+      'insertDrawio',
+      new InsertDrawioCommand(this.editor)
+    );
   }
 }
