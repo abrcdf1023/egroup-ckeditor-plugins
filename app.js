@@ -35,9 +35,13 @@ ClassicEditor
       })
     },
     drawioEdit: {
-      onOpenClick: (e, selectedDrawio) => {
+      onOpenClick: (e, selectedDrawio, editor) => {
+        console.log(editor)
         console.log('Open Clicked')
         console.log(selectedDrawio.getAttribute('src'))
+        editor.model.change(writer => {
+          writer.setAttribute('src', 'https://www.google.com.tw/', selectedDrawio);
+        });
       }
     },
   })

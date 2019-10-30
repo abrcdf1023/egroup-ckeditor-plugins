@@ -47,7 +47,7 @@ export default class DrawioEditUI extends Plugin {
       if (onOpenClick) {
         this.listenTo(view, 'execute', e => {
           const selectedDrawio = getSelectedDrawioWidget(selection);
-          onOpenClick(e, selectedDrawio);
+          onOpenClick(e, selectedDrawio, editor);
         });
       }
 

@@ -52,13 +52,31 @@ export default class DrawioEditing extends Plugin {
   _defineConverters() {
     const conversion = this.editor.conversion;
 
-    conversion.for('editingDowncast').elementToElement({
-      model: 'drawio',
-      view: (modelElement, viewWriter) =>
-        toWidget(createDrawio(modelElement, viewWriter), viewWriter, {
-          label: 'drawio widget'
-        })
-    });
+    conversion
+      .for('editingDowncast')
+      // Attribute converter for editing downcast.Please read this issue
+      // https://github.com/ckeditor/ckeditor5/issues/1845
+      .add(dispatcher => {
+        dispatcher.on('attribute:src:drawio', (evt, data, conversionApi) => {
+          console.log(data.attributeNewValue);
+          if (!data.attributeNewValue) return;
+          const viewWriter = conversionApi.writer;
+          const figure = conversionApi.mapper.toViewElement(data.item);
+          const iframe = figure.getChild(0).getChild(0);
+          viewWriter.setAttribute(
+            data.attributeKey,
+            data.attributeNewValue,
+            iframe
+          );
+        });
+      })
+      .elementToElement({
+        model: 'drawio',
+        view: (modelElement, viewWriter) =>
+          toWidget(createDrawio(modelElement, viewWriter), viewWriter, {
+            label: 'drawio widget'
+          })
+      });
 
     conversion.for('dataDowncast').elementToElement({
       model: 'drawio',
