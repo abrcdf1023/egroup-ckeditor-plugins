@@ -3,7 +3,8 @@ import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 import DrawioEditing from './drawio/drawioediting';
 import DrawioUI from './drawio/drawioui';
 import AutoDrawioEmbed from './drawio/autodrawioembed';
-import InsertDrawioCommand from './drawio/insertdrawiocommand';
+import InsertDrawioCommand from './drawio/InsertDrawioCommand';
+import UpdateSelectedDrawioAttributeCommand from './drawio/UpdateSelectedDrawioAttributeCommand';
 
 export default class Drawio extends Plugin {
   /**
@@ -21,6 +22,10 @@ export default class Drawio extends Plugin {
     this.editor.commands.add(
       'insertDrawio',
       new InsertDrawioCommand(this.editor)
+    );
+    this.editor.commands.add(
+      'updateSelectedDrawioAttribute',
+      new UpdateSelectedDrawioAttributeCommand(this.editor)
     );
   }
 }

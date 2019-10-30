@@ -2,7 +2,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
-import AsyncInsertDrawioCommand from './asyncinsertdrawiocommand';
+import InsertDrawioCommand from './insertdrawiocommand';
 
 function createDrawio(element, writer) {
   const root = writer.createContainerElement('figure', {
@@ -33,8 +33,8 @@ export default class DrawioEditing extends Plugin {
     this._defineConverters();
 
     this.editor.commands.add(
-      'asyncInsertDrawio',
-      new AsyncInsertDrawioCommand(this.editor)
+      'insertDrawio',
+      new InsertDrawioCommand(this.editor)
     );
   }
 

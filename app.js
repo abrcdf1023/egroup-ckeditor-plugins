@@ -28,20 +28,18 @@ ClassicEditor
       autoEmbedMatcher: (url) => {
         return url.indexOf('edstest-bucket') !== -1
       },
-      asyncInsertDrawio: () => new Promise((resolve) => {
+      onCreateClick: (e, editor) => {
         setTimeout(() => {
-          resolve('https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/flow/html/0872d2689b644670875af0d6c29e91c3.html')
-        }, 2000)
-      })
+          editor.execute('insertDrawio', 'https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/flow/html/0872d2689b644670875af0d6c29e91c3.html')
+        }, 1000)
+      }
     },
     drawioEdit: {
-      onOpenClick: (e, selectedDrawio, editor) => {
-        console.log(editor)
-        console.log('Open Clicked')
-        console.log(selectedDrawio.getAttribute('src'))
-        editor.model.change(writer => {
-          writer.setAttribute('src', 'https://www.google.com.tw/', selectedDrawio);
-        });
+      onOpenClick: (e, editor) => {
+        editor.execute('updateSelectedDrawioAttribute', {
+          name: 'src',
+          value: 'https://www.google.com.tw/'
+        })
       }
     },
   })

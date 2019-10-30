@@ -1,18 +1,11 @@
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { createDrawio } from '../utils';
 
-export default class AsyncInsertDrawioCommand extends Command {
-  execute() {
+export default class InsertDrawioCommand extends Command {
+  execute(url) {
     const editor = this.editor;
     editor.model.change(writer => {
-      const { asyncInsertDrawio } = editor.config.get('drawio') || {};
-      if (asyncInsertDrawio) {
-        asyncInsertDrawio()
-          .then(url => {
-            editor.model.insertContent(createDrawio(writer, url));
-          })
-          .catch(error => console.error(error));
-      }
+      editor.model.insertContent(createDrawio(writer, url));
     });
   }
 
