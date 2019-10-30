@@ -58,7 +58,6 @@ export default class DrawioEditing extends Plugin {
       // https://github.com/ckeditor/ckeditor5/issues/1845
       .add(dispatcher => {
         dispatcher.on('attribute:src:drawio', (evt, data, conversionApi) => {
-          console.log(data.attributeNewValue);
           if (!data.attributeNewValue) return;
           const viewWriter = conversionApi.writer;
           const figure = conversionApi.mapper.toViewElement(data.item);
