@@ -3,6 +3,30 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
 import AsyncInsertDrawioCommand from './asyncinsertdrawiocommand';
+
+function createDrawio(element, writer) {
+  const root = writer.createContainerElement('figure', {
+    class: 'drawio-wrapper',
+    style: 'margin: 1em 0;'
+  });
+  const container = writer.createContainerElement('div', {
+    style: 'position: relative; height: 0; padding-bottom: 500px;'
+  });
+  // TODO: Use customized view button to replace drawio default iframe buttons.
+  const iframe = writer.createEmptyElement('iframe', {
+    class: 'drawio',
+    style: 'position: absolute; height: 100%; top: 0; left: 0;',
+    src: element.getAttribute('src')
+  });
+
+  writer.setCustomProperty('drawio', true, root);
+
+  writer.insert(writer.createPositionAt(container, 0), iframe);
+
+  writer.insert(writer.createPositionAt(root, 0), container);
+
+  return root;
+}
 export default class DrawioEditing extends Plugin {
   init() {
     this._defineSchema();
@@ -28,33 +52,17 @@ export default class DrawioEditing extends Plugin {
   _defineConverters() {
     const conversion = this.editor.conversion;
 
-    conversion.for('downcast').elementToElement({
+    conversion.for('editingDowncast').elementToElement({
       model: 'drawio',
-      view: (modelElement, viewWriter) => {
-        const root = viewWriter.createContainerElement('figure', {
-          class: 'drawio-wrapper',
-          style: 'margin: 1em 0;'
-        });
-        const container = viewWriter.createContainerElement('div', {
-          style: 'position: relative; height: 0; padding-bottom: 500px;'
-        });
-        // TODO: Use customized view button to replace drawio default iframe buttons.
-        const iframe = viewWriter.createEmptyElement('iframe', {
-          class: 'drawio',
-          style: 'position: absolute; height: 100%; top: 0; left: 0;',
-          src: modelElement.getAttribute('src')
-        });
-
-        viewWriter.setCustomProperty('drawio', true, root);
-
-        viewWriter.insert(viewWriter.createPositionAt(container, 0), iframe);
-
-        viewWriter.insert(viewWriter.createPositionAt(root, 0), container);
-
-        return toWidget(root, viewWriter, {
+      view: (modelElement, viewWriter) =>
+        toWidget(createDrawio(modelElement, viewWriter), viewWriter, {
           label: 'drawio widget'
-        });
-      }
+        })
+    });
+
+    conversion.for('dataDowncast').elementToElement({
+      model: 'drawio',
+      view: (modelElement, viewWriter) => createDrawio(modelElement, viewWriter)
     });
 
     conversion.for('upcast').elementToElement({
@@ -65,9 +73,9 @@ export default class DrawioEditing extends Plugin {
           src: true
         }
       },
-      model: (viewImage, modelWriter) =>
+      model: (viewIframe, modelWriter) =>
         modelWriter.createElement('drawio', {
-          src: viewImage.getAttribute('src')
+          src: viewIframe.getAttribute('src')
         })
     });
   }
