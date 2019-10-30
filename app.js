@@ -35,8 +35,9 @@ ClassicEditor
       })
     },
     drawioEdit: {
-      onOpenClick: () => {
+      onOpenClick: (e, selectedDrawio) => {
         console.log('Open Clicked')
+        console.log(selectedDrawio.getAttribute('src'))
       }
     },
   })
