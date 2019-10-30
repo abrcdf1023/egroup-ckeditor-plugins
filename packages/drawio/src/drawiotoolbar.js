@@ -1,6 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import WidgetToolbarRepository from '@ckeditor/ckeditor5-widget/src/widgettoolbarrepository';
-import { isWidget } from '@ckeditor/ckeditor5-widget/src/utils';
+import { getSelectedDrawioWidget } from './utils';
 
 export default class DrawioToolbar extends Plugin {
   static get requires() {
@@ -22,18 +22,4 @@ export default class DrawioToolbar extends Plugin {
       getRelatedElement: getSelectedDrawioWidget
     });
   }
-}
-
-function isDrawioWidget(viewElement) {
-  return !!viewElement.getCustomProperty('drawio') && isWidget(viewElement);
-}
-
-function getSelectedDrawioWidget(selection) {
-  const viewElement = selection.getSelectedElement();
-
-  if (viewElement && isDrawioWidget(viewElement)) {
-    return viewElement;
-  }
-
-  return null;
 }
