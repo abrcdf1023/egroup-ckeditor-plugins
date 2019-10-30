@@ -36,6 +36,7 @@ ClassicEditor
     },
     drawioEdit: {
       onOpenClick: (e, editor) => {
+        console.log(editor.model.document.selection.getSelectedElement().getAttribute('src'))
         editor.execute('updateSelectedDrawioAttribute', {
           name: 'src',
           value: 'https://www.google.com.tw/'
