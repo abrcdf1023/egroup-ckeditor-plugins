@@ -7,11 +7,11 @@ export default class AsyncInsertDrawioCommand extends Command {
     editor.model.change(writer => {
       const { asyncInsertDrawio } = editor.config.get('drawio') || {};
       if (asyncInsertDrawio) {
-        asyncInsertDrawio().then(url => {
-          editor.model.insertContent(createDrawio(writer, url));
-        });
-      } else {
-        console.warn('Please config asyncInsertDrawio function.');
+        asyncInsertDrawio()
+          .then(url => {
+            editor.model.insertContent(createDrawio(writer, url));
+          })
+          .catch(error => console.error(error));
       }
     });
   }
