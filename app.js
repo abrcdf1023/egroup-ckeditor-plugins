@@ -49,6 +49,10 @@ ClassicEditor
 
     window.editor = editor;
     
+    editor.model.document.on( 'change', () => {
+      document.getElementById('preview').innerHTML = editor.getData()
+      document.getElementById('data').innerText = editor.getData()
+    });
     document.getElementById('preview').innerHTML = editor.getData()
     document.getElementById('data').innerText = editor.getData()
   })
