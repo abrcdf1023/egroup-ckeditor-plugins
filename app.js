@@ -30,7 +30,7 @@ ClassicEditor
       },
       onCreateClick: (e, editor) => {
         setTimeout(() => {
-          editor.execute('insertDrawio', 'https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/flow/html/0872d2689b644670875af0d6c29e91c3.html')
+          editor.execute('insertDrawio', 'https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/drawio/html/20191101093044_468c324ab4a64d99b64b4963350d4335.html')
         }, 1000)
       }
     },
@@ -48,6 +48,9 @@ ClassicEditor
     CKEditorInspector.attach('editor', editor);
 
     window.editor = editor;
+    
+    document.getElementById('preview').innerHTML = editor.getData()
+    document.getElementById('data').innerText = editor.getData()
   })
   .catch(error => {
     console.error(error.stack);

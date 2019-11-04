@@ -6,18 +6,21 @@
   <title>CKEditor 5 Framework – Quick start</title>
   <style>
     .ck-editor__editable {
-      min-height: 1000px;
+      min-height: 400px;
     }
   </style>
 </head>
 
 <body>
-  <div id="editor">
-    <figure class="drawio-wrapper ck-widget" style="margin:1em 0;" contenteditable="false">
-      <div style="position:relative;height:0;padding-bottom:500px;">
-        <iframe class="drawio" style="position:absolute;height:100%;top:0;left:0;" src="https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/flow/html/0872d2689b644670875af0d6c29e91c3.html"></iframe>
-      </div>
-    </figure>
+  <div style="padding: 20px; padding-bottom: 100px;">
+    <h1>Editor</h1>
+    <div id="editor">
+      <iframe class="drawio"src="https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/drawio/html/20191101093044_468c324ab4a64d99b64b4963350d4335.html"></iframe>
+    </div>
+    <h1>Preview</h1>
+    <div id="preview"></div>
+    <h1>Data</h1>
+    <div id="data"></div>
   </div>
 </body>
 
