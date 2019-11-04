@@ -72,7 +72,11 @@ export default class DrawioEditing extends Plugin {
 
     conversion.for('dataDowncast').elementToElement({
       model: 'drawio',
-      view: (modelElement, viewWriter) => createDrawio(modelElement, viewWriter)
+      view: (modelElement, viewWriter) =>
+        viewWriter.createEmptyElement('iframe', {
+          class: 'drawio',
+          src: modelElement.getAttribute('src')
+        })
     });
 
     conversion.for('upcast').elementToElement({
