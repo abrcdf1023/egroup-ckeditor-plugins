@@ -13,7 +13,7 @@ function createDrawio(element, writer) {
   // TODO: Use customized view button to replace drawio default iframe buttons.
   const iframe = writer.createEmptyElement('iframe', {
     class: 'drawio',
-    style: 'position: absolute; height: 100%; top: 0; left: 0;',
+    style: 'position: absolute; height: 100%; width: 100%; top: 0; left: 0;',
     src: element.getAttribute('src')
   });
 
@@ -47,14 +47,19 @@ export default class DrawioEditing extends Plugin {
 
     conversion
       .for('editingDowncast')
-      // Attribute converter for editing downcast.Please read this issue
+      // We need Attribute converter for editing downcast to dynamic update attributes.
+      // Please read this issue for more information.
       // https://github.com/ckeditor/ckeditor5/issues/1845
       .add(dispatcher => {
         dispatcher.on('attribute:src:drawio', (evt, data, conversionApi) => {
-          if (!data.attributeNewValue) return;
+          // Skip adding and removing attribute, we are interesting only in changes in this case.
+          if (!data.attributeOldValue || !data.attributeNewValue) {
+            return;
+          }
           const viewWriter = conversionApi.writer;
           const figure = conversionApi.mapper.toViewElement(data.item);
-          const iframe = figure.getChild(0).getChild(0);
+          const container = figure.getChild(1);
+          const iframe = container.getChild(0);
           viewWriter.setAttribute(
             data.attributeKey,
             data.attributeNewValue,
@@ -66,7 +71,8 @@ export default class DrawioEditing extends Plugin {
         model: 'drawio',
         view: (modelElement, viewWriter) =>
           toWidget(createDrawio(modelElement, viewWriter), viewWriter, {
-            label: 'drawio widget'
+            label: 'drawio widget',
+            hasSelectionHandle: true
           })
       });
 
