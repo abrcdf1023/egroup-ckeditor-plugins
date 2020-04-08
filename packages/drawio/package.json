@@ -3,13 +3,13 @@
   "version": "1.2.1",
   "license": "MIT",
   "dependencies": {
-    "@ckeditor/ckeditor5-clipboard": "^15.0.0",
-    "@ckeditor/ckeditor5-core": "^15.0.0",
-    "@ckeditor/ckeditor5-engine": "^15.0.0",
-    "@ckeditor/ckeditor5-ui": "^15.0.0",
-    "@ckeditor/ckeditor5-undo": "^15.0.0",
-    "@ckeditor/ckeditor5-utils": "^15.0.0",
-    "@ckeditor/ckeditor5-widget": "^15.0.0"
+    "@ckeditor/ckeditor5-clipboard": "^18.0.0",
+    "@ckeditor/ckeditor5-core": "^18.0.0",
+    "@ckeditor/ckeditor5-engine": "^18.0.0",
+    "@ckeditor/ckeditor5-ui": "^18.0.0",
+    "@ckeditor/ckeditor5-undo": "^18.0.0",
+    "@ckeditor/ckeditor5-utils": "^18.0.0",
+    "@ckeditor/ckeditor5-widget": "^18.0.0"
   },
   "publishConfig": {
     "access": "public"
