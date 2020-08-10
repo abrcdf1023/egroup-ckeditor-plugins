@@ -3,7 +3,7 @@ import Command from '@ckeditor/ckeditor5-core/src/command';
 function getSelectedDrawioWidget(selection) {
   const selectedElement = selection.getSelectedElement();
 
-  if (selectedElement && selectedElement.is('drawio')) {
+  if (selectedElement && selectedElement.name === 'drawio') {
     return selectedElement;
   }
 
@@ -14,6 +14,7 @@ export default class UpdateSelectedDrawioAttributeCommand extends Command {
   execute(options) {
     const editor = this.editor;
     const selection = editor.model.document.selection;
+
     editor.model.change(writer => {
       writer.setAttribute(
         options.name,

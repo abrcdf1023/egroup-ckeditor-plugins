@@ -30,11 +30,14 @@ ClassicEditor
       },
       onCreateClick: (e, editor) => {
         setTimeout(() => {
-          editor.execute('insertDrawio', 'resources/drawio/html/20191101093044_468c324ab4a64d99b64b4963350d4335.html')
+          editor.execute('insertDrawio', 'resources/drawio/html/20191106190235_99e3a9c4dfad4423aabb38114227fad7.html')
         }, 1000)
       },
       formatSrc: (src) => {
-        return `https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/${src}`
+        if (src.indexOf('https') === -1) {
+          return `https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/${src}`
+        }
+        return src
       }
     },
     // edit button in the editor content.
@@ -54,10 +57,8 @@ ClassicEditor
     window.editor = editor;
     
     editor.model.document.on( 'change', () => {
-      document.getElementById('preview').innerHTML = editor.getData()
       document.getElementById('data').innerText = editor.getData()
     });
-    document.getElementById('preview').innerHTML = editor.getData()
     document.getElementById('data').innerText = editor.getData()
   })
   .catch(error => {
