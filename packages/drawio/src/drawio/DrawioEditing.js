@@ -2,7 +2,8 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import { toWidget } from '@ckeditor/ckeditor5-widget/src/utils';
 
-function createDrawio(element, writer) {
+function createDrawio(element, writer, config) {
+  const { formatSrc } = config;
   const root = writer.createContainerElement('figure', {
     class: 'drawio-wrapper',
     style: 'margin: 1em 0;'
@@ -14,7 +15,9 @@ function createDrawio(element, writer) {
   const iframe = writer.createEmptyElement('iframe', {
     class: 'drawio',
     style: 'position: absolute; height: 100%; width: 100%; top: 0; left: 0;',
-    src: element.getAttribute('src')
+    src: formatSrc
+      ? formatSrc(element.getAttribute('src'))
+      : element.getAttribute('src')
   });
 
   writer.setCustomProperty('drawio', true, root);
@@ -44,6 +47,7 @@ export default class DrawioEditing extends Plugin {
 
   _defineConverters() {
     const conversion = this.editor.conversion;
+    const config = this.editor.config.get('drawio') || {};
 
     conversion
       .for('editingDowncast')
@@ -70,7 +74,7 @@ export default class DrawioEditing extends Plugin {
       .elementToElement({
         model: 'drawio',
         view: (modelElement, viewWriter) =>
-          toWidget(createDrawio(modelElement, viewWriter), viewWriter, {
+          toWidget(createDrawio(modelElement, viewWriter, config), viewWriter, {
             label: 'drawio widget',
             hasSelectionHandle: true
           })

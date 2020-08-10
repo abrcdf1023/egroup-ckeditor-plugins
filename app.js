@@ -30,10 +30,14 @@ ClassicEditor
       },
       onCreateClick: (e, editor) => {
         setTimeout(() => {
-          editor.execute('insertDrawio', 'https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/resources/drawio/html/20191101093044_468c324ab4a64d99b64b4963350d4335.html')
+          editor.execute('insertDrawio', 'resources/drawio/html/20191101093044_468c324ab4a64d99b64b4963350d4335.html')
         }, 1000)
+      },
+      formatSrc: (src) => {
+        return `https://edstest-bucket.s3-ap-northeast-1.amazonaws.com/${src}`
       }
     },
+    // edit button in the editor content.
     drawioEdit: {
       onOpenClick: (e, editor) => {
         console.log(editor.model.document.selection.getSelectedElement().getAttribute('src'))
