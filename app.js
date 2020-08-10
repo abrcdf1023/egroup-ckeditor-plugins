@@ -46,7 +46,7 @@ ClassicEditor
         console.log(editor.model.document.selection.getSelectedElement().getAttribute('src'))
         editor.execute('updateSelectedDrawioAttribute', {
           name: 'src',
-          value: 'https://www.google.com.tw/'
+          value: 'resources/drawio/html/20191106190235_99e3a9c4dfad4423aabb38114227fad7.html'
         })
       }
     },

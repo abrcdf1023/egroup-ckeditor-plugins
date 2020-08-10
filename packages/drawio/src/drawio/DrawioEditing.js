@@ -48,6 +48,7 @@ export default class DrawioEditing extends Plugin {
   _defineConverters() {
     const conversion = this.editor.conversion;
     const config = this.editor.config.get('drawio') || {};
+    const { formatSrc } = config;
 
     conversion
       .for('editingDowncast')
@@ -64,11 +65,11 @@ export default class DrawioEditing extends Plugin {
           const figure = conversionApi.mapper.toViewElement(data.item);
           const container = figure.getChild(1);
           const iframe = container.getChild(0);
-          viewWriter.setAttribute(
-            data.attributeKey,
-            data.attributeNewValue,
-            iframe
-          );
+          let attributeNewValue = data.attributeNewValue;
+          if (data.attributeKey === 'src' && formatSrc) {
+            attributeNewValue = formatSrc(attributeNewValue);
+          }
+          viewWriter.setAttribute(data.attributeKey, attributeNewValue, iframe);
         });
       })
       .elementToElement({
