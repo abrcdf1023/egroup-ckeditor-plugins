@@ -5,7 +5,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-clipboard": "^21.0.0",
     "@ckeditor/ckeditor5-core": "^21.0.0",
-    "@ckeditor/ckeditor5-engine": "^21.0.0",
+    "@ckeditor/ckeditor5-engine": "^27.0.0",
     "@ckeditor/ckeditor5-ui": "^21.0.0",
     "@ckeditor/ckeditor5-undo": "^21.0.0",
     "@ckeditor/ckeditor5-utils": "^21.0.0",
